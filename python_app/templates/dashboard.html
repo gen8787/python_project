@@ -5,10 +5,16 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard</title>
 </head>
 <body>
-    <h2>Welcome Home, son.</h2>
-    <p>Let's get to work</p>
+<div id="container">
+    <div id="welcome">
+        <h1>Welcome {{ user.first_name }}, Let's climb!</h1>
+        <p>NEW TEXT HERE.</p>
+        <a href="/logout">Logout</a>
+    </div welcome>
+    <hr>
+</div container>
 </body>
 </html>

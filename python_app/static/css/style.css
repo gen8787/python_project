@@ -1,6 +1,32 @@
-h2{
-    color: steelblue;
+/* LOGIN PAGE - - - - - LOGIN PAGE - - - - - LOGIN PAGE - - - - - LOGIN PAGE - - - - - LOGIN PAGE - - - - - LOGIN PAGE - - - - -  */
+#login, #registration {
+    min-width: 300px;
+    display: inline-block;
+    border: 2px solid darkolivegreen;
+    margin: 20px;
+    padding: 10px;
+    background-image: linear-gradient(to bottom right, lightgoldenrodyellow, khaki);
 }
-p{
-    color: dimgray;
+.log-reg-hr {
+    width: 230px;
+    margin-top: -10px;
+    border-color: goldenrod;
+}
+.log-reg-input {
+    float: right;
+    min-width: 200px;
+}
+.log-reg-but {
+    float: right;
+    padding: 5px;
+}
+
+/* MESSAGES - - - - - MESSAGES - - - - - MESSAGES - - - - - MESSAGES - - - - - MESSAGES - - - - - MESSAGES - - - - -  */
+.msg-red {
+    color: red;
+}
+
+/* GENERAL FORMATTING - - - - - GENERAL FORMATTING - - - - - GENERAL FORMATTING - - - - - GENERAL FORMATTING - - - - -  */
+.t-c {
+    text-align: center;
 }
