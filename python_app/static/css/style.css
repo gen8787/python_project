@@ -30,3 +30,13 @@
 .t-c {
     text-align: center;
 }
+
+/* MAP - - - - - MAP - - - - - MAP - - - - - MAP - - - - - MAP - - - - - MAP - - - - - MAP - - - - -  */
+#mapid {
+    height: 300px;
+    width: 500px;
+}
+#map {
+    height: 300px;
+    width: 500px; 
+}
