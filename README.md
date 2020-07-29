@@ -17,6 +17,8 @@ Goals:
 3. Produce a visually appealing app.
 
 Technologies used:
+1. https://leafletjs.com
+2. https://www.mapbox.com
 
 
 
