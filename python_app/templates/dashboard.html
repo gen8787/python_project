@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    Access-Control-Allow-Origin: https://github.com/gen8787/gen8787.github.io/blob/master/Sierra.json
-    {% load staticfiles %}
     {% load static %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -11,11 +9,6 @@
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
     <!-- LEAFLET -->
-    <!-- MAPBOX -->
-    <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css' rel='stylesheet'/>
-    <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
-    <!-- MAPBOX -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
@@ -23,10 +16,21 @@
 <body>
 <div id="container">
     <div id="welcome">
-        <h1>Welcome {{ user.first_name }}, Let's climb!</h1>
-        <p>NEW TEXT HERE.</p>
+        <h3>Welcome {{ user.first_name }}, Let's climb!</h3>
         <a href="/logout">Logout</a>
     </div welcome>
+    <hr>
+    <div id="zipcode">
+        <form action="" method="post" id="form_zip">
+            {% csrf_token %}
+            <p>Find climbs near you.</p>
+            <input type="text" name="form_zip" id="form_zipcode" placeholder="Enter Zip Code"> >
+            <button type="submit">Go</button>
+        </form>
+    </div>
+    <hr>
+    <div id="mp_profile">
+    </div>
     <hr>
     <div id="mapid"></div>
     <hr>
