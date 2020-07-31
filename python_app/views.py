@@ -3,6 +3,8 @@ from .models import *
 from django.contrib import messages
 import bcrypt
 import requests, pprint, json
+from selenium.webdriver.common.by import By
+from selenium import webdriver
 
 def login(request):
     return render(request, 'login.html')
@@ -73,9 +75,72 @@ def dashboard(request):
 
         return render(request, 'dashboard.html', context)
 
-def add_route(request):
+def add_route(request, route_id):
+    route_id = route_id
+    response = requests.get("https://www.mountainproject.com/data/get-routes?routeIds="+str(route_id)+"&key=106838734-05344d7002476a0d76531a206c4c4ba3")
+    json_res = response.json()
+    pprint.pprint(json_res)
     
-    pass
+    context = {
+        "route_info" : json_res
+    }
+
+    trail_name = json_res.get('routes')[0].get('name')
+    location = json_res.get('routes')[0].get('location')
+    elevation = json_res.get('routes')[0].get('type')
+    difficulty = json_res.get('routes')[0].get('name')
+    desc = json_res.get('routes')[0].get('url')
+    creator = User.objects.get(id=request.session['user_id'])
+
+    Trail.objects.create(trail_name = trail_name, location = location, elevation = elevation, difficulty = difficulty, desc = desc, creator = creator)
+
+
+    # driver = webdriver.Safari()
+    # driver.back()
+    return render(request, 'dashboard.html', context)
+
+def view_climbs(request):
+
+    context = {
+        "user" : User.objects.get(id = request.session['user_id']),
+        "climbs" : Trail.objects.filter(creator = request.session['user_id'])
+    }
+
+    return render(request, 'view_climbs.html', context)
+
+def remove_climb(request, trail_id):
+    remove_climb = Trail.objects.get(id = trail_id)
+    remove_climb.delete()
+    return(redirect('/view_climbs'))
+
+#Trail Validation and create
+def validate_trail(request):
+
+    errors = Trail.objects.validate_trail(request.POST)
+    if len(errors) > 0:
+        for key, val in errors.items():
+            messages.error(request, val)
+        return redirect('/create_trail')
+
+    trail_name = request.POST['trail_name']
+    location= request.POST['location']
+    elevation = request.POST['elevation']
+    difficulty = request.POST['difficulty']
+    desc = request.POST['desc']
+    user = User.objects.get(id=request.session['user_id'])
+
+    Trail.objects.create(trail_name = trail_name, location = location, elevation = elevation, difficulty = difficulty, desc = desc, creator = user)
+    
+    return redirect('/view_climbs')
+
+def create_trail(request):
+    cur_user_id = request.session['user_id']
+    cur_user = User.objects.get(id = request.session['user_id'])
+    context = {
+        "user" : User.objects.get(id = cur_user_id),
+        'all_trails' : Trail.objects.all()
+    }
+    return render(request, "create.html", context)
 
 # LOGOUT   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   
 

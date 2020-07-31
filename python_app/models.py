@@ -39,3 +39,25 @@ class User(models.Model):
 
     def __str__(self):
         return f'Name: {self.first_name} {self.last_name} ID: {self.id}'
+
+class TrailManager(models.Manager):
+    def validate_trail(self, postData):
+        errors = {}
+        if len(postData['trail_name']) < 3:
+            errors['trail_name'] = "Trail name must consist of at least 3 characters"
+        if len(postData['location']) < 3:
+            errors['location'] = "A location must be provided"
+        return errors
+
+class Trail(models.Model):
+    trail_name = models.CharField(max_length=255)
+    location = models.CharField(max_length=255)
+    elevation = models.CharField(max_length=10)
+    difficulty = models.CharField(max_length=255)
+    desc = models.TextField()
+    creator = models.ForeignKey(User, related_name="created_hike", on_delete=models.CASCADE)
+
+    objects = TrailManager()
+
+    created_at = models.DateField(auto_now_add=True)
+    updated_at = models.DateField(auto_now=True)

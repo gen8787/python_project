@@ -7,14 +7,13 @@ $(document).ready(function() {
         var zip = $("#form_zipcode").val()
         var city = $("#form_city").val()
         var state = $("#form_state").val()
-
-        
-        $.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + zip + "&key=AIzaSyALgoUzjRBprBKw9JtbscY6rkmdZkjyKws",
-        function(res){
-            console.log(res)
-            var lat = res['results']['0']['geometry']['location']['lat']
-            var lon = res['results']['0']['geometry']['location']['lng']
-            console.log(lat, lon)
+            
+            $.get("https://maps.googleapis.com/maps/api/geocode/json?address=" + zip + "&key=AIzaSyALgoUzjRBprBKw9JtbscY6rkmdZkjyKws",
+            function(res){
+                console.log(res)
+                var lat = res['results']['0']['geometry']['location']['lat']
+                var lon = res['results']['0']['geometry']['location']['lng']
+                console.log(lat, lon)
 
             // // Create Map
             var mymap = L.map('mapid').setView([lat, lon], 10);
@@ -30,7 +29,7 @@ $(document).ready(function() {
                 console.log(res)
                 html_output = "<table class='table'><thead><th>Route Name</th><th>Difficulty</th><th>Pitches</th><th>Type</th><th>Location</th><th>Add</th></thead><tbody>"
                 for(var i = 0; i < res.routes.length; i ++){
-                    html_output += "<tr><td><a href="+res.routes[i].url+" target='_blank'>"+res.routes[i].name+"</a>"+"</td><td>"+res.routes[i].rating+"</td><td>"+res.routes[i].pitches+"</td><td>"+res.routes[i].type+"</td><td>"+res.routes[i].location[2]+", "+res.routes[i].location[3]+", "+res.routes[i].location[4]+"</td><td><a href='/add/"+res.routes[i].id+"/addtrip'>+</a></td></tr>"
+                    html_output += "<tr><td><a href="+res.routes[i].url+" target='_blank'>"+res.routes[i].name+"</a>"+"</td><td>"+res.routes[i].rating+"</td><td>"+res.routes[i].pitches+"</td><td>"+res.routes[i].type+"</td><td>"+res.routes[i].location[2]+", "+res.routes[i].location[3]+", "+res.routes[i].location[4]+"</td><td><a href='/add_route/"+res.routes[i].id+"'>+</a></td></tr>"
                 }
                 html_output += "</tbody></table>"
                 $('#mp_profile').html(html_output)

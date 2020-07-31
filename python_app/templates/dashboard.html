@@ -23,10 +23,13 @@
                     <a class="nav-link" href="#"></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Add New Climb</a>
+                    <a class="nav-link" href="/dashboard">Find Climbs</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">View Climbs</a>
+                    <a class="nav-link" href="/view_climbs">View Climbs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/create_trail">Create Climbs</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Find Partners</a>
@@ -119,6 +122,19 @@
     <hr class="dashline">
     <div id="mapid"></div>
     <div id="mapzip"></div>
+    <p></p>
+    {% for r in route_info.routes %}
+        {{ r.name }}
+    {% endfor %}
+    <br>
+    <p></p>
+    <br>
+    <p></p>
+    <br>
+    <p></p>
+    <br>
+    <p></p>
+    <br>
 </div container>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

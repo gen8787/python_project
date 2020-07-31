@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+<div class="cover-container p-5 w-720 mx-auto flex-column">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample08">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Welcome, {{ user.first_name }} <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"></a>
+                </li>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">Find Climbs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/view_climbs">View Climbs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/create_trail">Create Climbs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Find Partners</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Logout</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown08">
+                        <a class="dropdown-item" href="/logout">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div id="welcome">
+        <p></p>
+        <h3>Your Climbing Log</h3>
+        <p></p>
+        <p class="p-10">View and edit climbs on your list.</p>
+    </div welcome>
+    <hr class="dashline">
+    <table class='table'>
+        <thead>
+            <th>Route Name</th>
+            <th>Difficulty</th>
+            <th>Pitches</th>
+            <th>Type</th>
+            <th>Location</th>
+            <th>Remove</th>
+        </thead>
+        <tbody>
+            {% for r in climbs %}
+            <tr>
+                <td><a href="{{ r.desc }}" target='_blank'>{{r.trail_name}}</a></td>
+                <td>{{r.difficulty}}</td>
+                <td>{{r.trail_name}}</td>
+                <td>{{r.elevation}}</td>
+                <td>{{r.trail_name}}</td>
+                <td><a href='/remove_climb/{{r.id}}'>-</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <hr class="dashline">
+    <p></p>
+    {% for r in route_info.routes %}
+        {{ r.name }}
+    {% endfor %}
+    <br>
+    <p></p>
+    <br>
+    <p></p>
+    <br>
+    <p></p>
+    <br>
+    <p></p>
+    <br>
+</div container>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{% static 'js/main.js' %}"></script>
+<!-- LEAFLET -->
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+<!-- LEAFLET -->
+</body>
+</html>

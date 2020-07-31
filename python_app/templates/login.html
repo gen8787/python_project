@@ -20,17 +20,17 @@
             <br>
             <input type="password" name="form_pw" class="form-control" placeholder="Password">
             <br>
+            <!-- ERROR MESSAGES -->
+            {% if messages %}
+            <p class="msg-red">
+                {% for message in messages %}
+                <p class="msg-red" {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</p>
+                {% endfor %}
+            </p>
+            {% endif %}
             <button type="submit" class="btn btn-lg btn-secondary">Login</button>
             <p></p>
             <a href="/register" class="">Sign Up</a>
-            <!-- ERROR MESSAGES -->
-            {% if messages %}
-            <ul class="msg-red">
-                {% for message in messages %}
-                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
         </form>
     </div login>
 </div container>
