@@ -73,6 +73,10 @@ def dashboard(request):
 
         return render(request, 'dashboard.html', context)
 
+def add_route(request):
+    
+    pass
+
 # LOGOUT   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   
 
 def logout(request):
