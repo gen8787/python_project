@@ -61,7 +61,7 @@ def go_register(request):
     request.session['register'] = "Successfully registered!"
     request.session['user_id'] = new_user.id
     print(request.session['user_id'])
-    
+
     return redirect('/dashboard')
 
 def dashboard(request):
