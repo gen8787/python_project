@@ -38,5 +38,19 @@
 }
 #map {
     height: 300px;
-    width: 500px; 
+    width: 500px;
 }
+
+/*create trail-----create trail*/
+.create_trail{
+    width: 400px;
+    margin-left: 100px;
+    display: inline-block;
+}
+
+/*map---geolocation*/
+#map{
+    height: 100%;
+    display: inline-block;
+}
+

@@ -58,7 +58,7 @@ def go_register(request):
     request.session['register'] = "Successfully registered!"
     request.session['user_id'] = new_user.id
     print(request.session['user_id'])
-    
+
     return redirect('/dashboard')
 
 def dashboard(request):
@@ -72,7 +72,35 @@ def dashboard(request):
 
         return render(request, 'dashboard.html', context)
 
-# LOGOUT   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   
+#Trail Validation and create
+def validate_trail(request):
+    user : User.objects.get(id = request.session["user_id"])
+    errors = Trail.objects.validate_trail(request.POST)
+    if len(errors) > 0:
+        for key, val in errors.items():
+            messages.error(request, val)
+        return redirect('dashboard.html')
+    context = {
+        'all_trails' : Trail.objects.all()
+    }
+    trail_name = request.POST['trail_name']
+    location= request.POST['location']
+    elevation = request.POST['elevation']
+    difficulty = request.POST['difficulty']
+    desc = request.POST['desc']
+    Trail.objects.create(trail_name=trail_name, location=location, elevation=elevation, difficulty=difficulty, desc=desc)
+    return render(request, "dashboard.html",context)
+
+def create_trail(request):
+    cur_user_id = request.session['user_id']
+    cur_user = User.objects.get(id = request.session['user_id'])
+    context = {
+        "user" : User.objects.get(id = cur_user_id),
+        'all_trails' : Trail.objects.all()
+    }
+    return render(request, "create.html", context)
+
+# LOGOUT   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #
 
 def logout(request):
     request.session.clear()

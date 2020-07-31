@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     Access-Control-Allow-Origin: https://github.com/gen8787/gen8787.github.io/blob/master/Sierra.json
-    {% load staticfiles %}
     {% load static %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -24,7 +23,9 @@
 <div id="container">
     <div id="welcome">
         <h1>Welcome {{ user.first_name }}, Let's climb!</h1>
-        <p>NEW TEXT HERE.</p>
+        <p>
+        <a href="/create_trail">Create a Trail!</a>
+        </p>
         <a href="/logout">Logout</a>
     </div welcome>
     <hr>
